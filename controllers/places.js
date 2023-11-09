@@ -19,4 +19,21 @@ router.get('/', async (req, res) => {
   res.render('places/index', { places })
 })
 
+// GET /places/new
+router.get('/new', (req, res) => {
+  res.render('places/new')
+})
+
+// GET /places/:id/edit
+router.get('/:id/edit', async (req, res) => {
+  const id = req.params.id
+  res.render('places/edit')
+})
+
+// GET /places/:id
+router.get('/:id', async (req, res) => {
+  const id = req.params.id
+  res.render('places/show')
+})
+
 module.exports = router

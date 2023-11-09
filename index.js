@@ -2,6 +2,7 @@ require('dotenv').config()
 
 // IMPORTS
 const express = require('express')
+const placesController = require('./controllers/places')
 
 // CONSTANTS
 const app = express()
@@ -15,6 +16,8 @@ app.engine('jsx', require('express-react-views').createEngine())
 app.get('/', (req, res) => {
   res.render('home')
 })
+
+app.use('/places', placesController)
 
 app.get('*', (req, res) => {
   res.status(404).render('notfound')

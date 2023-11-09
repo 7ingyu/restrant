@@ -68,3 +68,11 @@
     </tr>
   </tbody>
 </table>
+
+## Database Schema
+Places:
+- name: string
+- city: string
+- state: string
+- cuisine: string
+- pic: string

@@ -7,8 +7,13 @@ const express = require('express')
 const app = express()
 const PORT = process.env.PORT
 
+// MIDDLEWARE
+app.set('view engine', 'jsx')
+app.engine('jsx', require('express-react-views').createEngine())
+
+// ROUTES & CONTROLLERS
 app.get('/', (req, res) => {
-  res.send('Hellooooo')
+  res.render('home')
 })
 
 app.get('*', (req, res) => {

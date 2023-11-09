@@ -1,0 +1,70 @@
+# Rest-rest
+
+## Routes
+
+<table>
+  <thead>
+    <th>
+      <td>Method</td>
+      <td>Path</td>
+      <td>Purpose</td>
+    </th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GET</td>
+      <td>/</td>
+      <td>Home page</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/places</td>
+      <td>Index for Places</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/places</td>
+      <td>Create new place</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/places/new</td>
+      <td>For page for creating new place</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/places/:id</td>
+      <td>Details about a place</td>
+    </tr>
+    <tr>
+      <td>PUT</td>
+      <td>/places/:id</td>
+      <td>Update a place</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/places/:id/edit</td>
+      <td>For to edit a place</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>/places/:id</td>
+      <td>Delete a place</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/places/:id/rant</td>
+      <td>Create a rant/comment about a place</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>/places/:id/rant/:rantId</td>
+      <td>Delete a rant/comment about a place</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/*</td>
+      <td>404 page</td>
+    </tr>
+  </tbody>
+</table>

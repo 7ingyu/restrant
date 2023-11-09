@@ -5,10 +5,8 @@ function NotFound () {
   return (
     <Def>
       <main>
-        <h1>404: PAGE NOT FOUND</h1>
-        <p>
-          Oops, sorry, we can't find this page!
-        </p>
+        <h1>Oops, sorry, we can't find this page!</h1>
+        <img className="img-fluid" src="https://http.dog/404.jpg" alt="404: PAGE NOT FOUND" />
       </main>
     </Def>
   )

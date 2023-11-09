@@ -3,10 +3,16 @@ const Def = require('../default')
 
 function Index ({ places = [] }) {
 
-  const placesFormatted = places.map(({name, pic}, i) => (
-    <div key={i}>
+  const placesFormatted = places.map(({name, pic, cuisines, city, state}, i) => (
+    <div className="col-sm-6" key={i}>
       <h2>{name}</h2>
-      <img src={pic} alt={name} />
+      <p className="text-center">
+        {cuisines}
+      </p>
+      <img className="img-fluid" src={pic} alt={name} />
+      <p className="text-center">
+        Located in {city}, {state}
+      </p>
     </div>
   ))
 
@@ -14,7 +20,9 @@ function Index ({ places = [] }) {
     <Def>
       <main>
         <h1>Places</h1>
-        {placesFormatted}
+        <div className="row">
+          {placesFormatted}
+        </div>
       </main>
     </Def>
   )

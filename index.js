@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('*', (req, res) => {
-  res.status(404).send('<h1>404: Page not found</h1>')
+  res.status(404).render('notfound')
 })
 
 app.listen(PORT, () => console.log('listening at', PORT))

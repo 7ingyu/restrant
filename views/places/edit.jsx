@@ -1,6 +1,6 @@
 const React = require('react')
 const Def = require('../default')
-const states = require('../data/states.json')
+const states = require('../../models/states.json')
 
 function Edit (
   { id, name, state, city, cuisines, pic, founded }

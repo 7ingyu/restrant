@@ -1,6 +1,6 @@
 const React = require('react')
 const Def = require('../default')
-const states = require('../data/states.json')
+const states = require('../../models/states.json')
 
 function New () {
 
@@ -54,7 +54,6 @@ function New () {
               type="url"
               id="new-place-pic"
               name="pic"
-              required
             />
           </div>
 

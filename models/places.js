@@ -1,15 +1,31 @@
-module.exports = [{
-  name: 'H-Thai-ML',
-  city: 'Seattle',
-  state: 'WA',
-  cuisines: 'Thai, Pan-Asian',
-  pic: 'http://placekitten.com/250/250',
-  founded: 1990
-}, {
-  name: 'Coding Cat Cafe',
-  city: 'Phoenix',
-  state: 'AZ',
-  cuisines: 'Coffee, Bakery',
-  pic: 'http://placekitten.com/250/250',
-  founded: 1990
-}]
+const mongoose = require('mongoose')
+const states = require('./states.json')
+
+const placeSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  pic: {
+    type: String,
+    default: "https://i.pinimg.com/originals/f3/0b/aa/f30baad5130286d75dad6f7fffecaa10.jpg"
+  },
+  cuisines: {
+    type: String,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
+  },
+  state: {
+    type: String,
+    enum: states.map(({abbreviation}) => abbreviation)
+  },
+  founded: {
+    type: Date,
+    required: true
+  }
+})
+
+module.exports = mongoose.model('Place', placeSchema)

@@ -39,12 +39,23 @@ router.get('/:id/edit', async (req, res) => {
 
 // GET /places/:id
 router.get('/:id', async (req, res) => {
-  // const id = req.params.id
+  const id = req.params.id
   // if (!places[id]) {
   //   res.render('notfound')
   // } else {
   //   res.render('places/show', { ...places[id], id })
   // }
+  try {
+    const place = await Place.findById(id)
+    if (place.id) {
+      res.render('places/show', place)
+    } else {
+      throw 'Invalid ID'
+    }
+  } catch (e) {
+    console.log(e)
+    res.render('error', { error: e.message })
+  }
 })
 
 router.put('/:id', async (req, res) => {

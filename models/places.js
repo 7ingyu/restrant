@@ -27,7 +27,13 @@ const placeSchema = new mongoose.Schema({
     required: true,
     min: [1500, "Invalid date too old"],
     max: [new Date().getFullYear(), "Invalide date in the future"]
-  }
+  },
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment'
+    }
+  ]
 })
 
 module.exports = mongoose.model('Place', placeSchema)

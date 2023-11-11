@@ -11,4 +11,4 @@ connect()
 
 module.exports = connect;
 module.exports.Place = require('./places');
-// module.exports.Comment = require('./comments');
+module.exports.Comment = require('./comments');

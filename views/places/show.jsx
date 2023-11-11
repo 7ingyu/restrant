@@ -18,10 +18,10 @@ function Show (
             <p>Not Rated</p>
             <h2>Description</h2>
             <p>Located in {city}, {state} serving {cuisines}</p>
-            <div className="flex">
-              <a href={`/places/${id}/edit`} className="btn btn-secondary">Edit</a>
+            <div className="d-flex gap-2">
+              <a href={`/places/${id}/edit`} className="d-block btn btn-secondary">Edit</a>
               <form action={`/places/${id}?_method=DELETE`} method="POST">
-                <button className="btn btn-danger">DELETE</button>
+                <button className="d-block w-100 btn btn-danger">DELETE</button>
               </form>
             </div>
           </div>

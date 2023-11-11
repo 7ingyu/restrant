@@ -21,7 +21,11 @@ router.get('/new', (req, res) => {
 // GET /places/:id/edit
 router.get('/:id/edit', async (req, res) => {
   const id = req.params.id
-  res.render('places/edit')
+  if (!places[id]) {
+    res.render('notfound')
+  } else {
+    res.render('places/edit', { ...places[id], id })
+  }
 })
 
 // GET /places/:id
@@ -31,6 +35,16 @@ router.get('/:id', async (req, res) => {
     res.render('notfound')
   } else {
     res.render('places/show', { ...places[id], id })
+  }
+})
+
+router.put('/:id', async (req, res) => {
+  const id = req.params.id
+  if (!places[id]) {
+    res.render('notfound')
+  } else {
+    places[id] = req.body
+    res.redirect(`/places/${id}`)
   }
 })
 

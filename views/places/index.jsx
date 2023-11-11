@@ -3,9 +3,9 @@ const Def = require('../default')
 
 function Index ({ places = [] }) {
 
-  const placesFormatted = places.map(({name, pic, cuisines, city, state}, i) => (
-    <div className="col-sm-6" key={i}>
-      <h2>{name}</h2>
+  const placesFormatted = places.map(({name, pic, cuisines, city, state}, id) => (
+    <div className="col-sm-6" key={id}>
+      <a href={`/places/${id}`}><h2>{name}</h2></a>
       <p className="text-center">
         {cuisines}
       </p>

@@ -1,22 +1,16 @@
 const router = require('express').Router()
+const places = require('../models/places')
 
 // GET /places
 router.get('/', async (req, res) => {
-  const places = [{
-    name: 'H-Thai-ML',
-    city: 'Seattle',
-    state: 'WA',
-    cuisines: 'Thai, Pan-Asian',
-    pic: 'http://placekitten.com/250/250'
-  }, {
-    name: 'Coding Cat Cafe',
-    city: 'Phoenix',
-    state: 'AZ',
-    cuisines: 'Coffee, Bakery',
-    pic: 'http://placekitten.com/250/250'
-  }]
-
   res.render('places/index', { places })
+})
+
+// POST /places
+router.post('/', async (req, res) => {
+  // console.log(req.body)
+  places.push(req.body)
+  res.redirect('/places')
 })
 
 // GET /places/new
@@ -33,7 +27,23 @@ router.get('/:id/edit', async (req, res) => {
 // GET /places/:id
 router.get('/:id', async (req, res) => {
   const id = req.params.id
-  res.render('places/show')
+  if (!places[id]) {
+    res.render('notfound')
+  } else {
+    res.render('places/show', { ...places[id], id })
+  }
 })
+
+// DELETE /places/:id
+router.delete('/:id', async (req, res) => {
+  const id = req.params.id
+  if (!places[id]) {
+    res.render('notfound')
+  } else {
+    places.splice(id, 1)
+    res.redirect('/places')
+  }
+})
+
 
 module.exports = router

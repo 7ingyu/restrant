@@ -1,4 +1,5 @@
 const React = require('react')
+const Nav = require('./nav')
 
 function Def ({ children }) {
   return (
@@ -14,6 +15,7 @@ function Def ({ children }) {
         <link rel="stylesheet" href="/styles.css" />
       </head>
       <body>
+        <Nav />
         <div className="container">
           {children}
         </div>

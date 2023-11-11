@@ -83,15 +83,15 @@ function New () {
           <div className="col-12 mb-3 form-group">
             <label
               className="form-label"
-              htmlFor="new-place-cuisine"
+              htmlFor="new-place-cuisines"
             >
               Cuisine
             </label>
             <input
               className="form-control"
               type="text"
-              id="new-place-cuisine"
-              name="cuisine"
+              id="new-place-cuisines"
+              name="cuisines"
               required
             />
           </div>

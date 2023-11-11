@@ -10,7 +10,7 @@ function New () {
         <h1>Add a Place</h1>
         <form className="row" method="POST" action="/places">
 
-          <div className="col-12 mb-3 form-group">
+        <div className="col-12 col-lg-9 mb-3 form-group">
             <label
               className="form-label"
               htmlFor="new-place-name"
@@ -22,6 +22,22 @@ function New () {
               type="text"
               id="new-place-name"
               name="name"
+              required
+            />
+          </div>
+
+          <div className="col-12 col-lg-3 mb-3 form-group">
+            <label
+              className="form-label"
+              htmlFor="new-place-founded"
+            >
+              Founded
+            </label>
+            <input
+              className="form-control"
+              type="date"
+              id="new-place-founded"
+              name="founded"
               required
             />
           </div>
@@ -42,7 +58,7 @@ function New () {
             />
           </div>
 
-          <div className="col-12 mb-3 form-group">
+          <div className="col-12 col-lg-6 mb-3 form-group">
             <label
               className="form-label"
               htmlFor="new-place-city"
@@ -58,7 +74,7 @@ function New () {
             />
           </div>
 
-          <div className="col-12 mb-3 form-group">
+          <div className="col-12 col-lg-6 mb-3 form-group">
             <label
               className="form-label"
               htmlFor="new-place-state"

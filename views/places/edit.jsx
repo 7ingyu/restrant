@@ -3,7 +3,7 @@ const Def = require('../default')
 const states = require('../data/states.json')
 
 function Edit (
-  { id, name, state, city, cuisines, pic }
+  { id, name, state, city, cuisines, pic, founded }
 ) {
 
   return (
@@ -12,7 +12,7 @@ function Edit (
         <h1>Edit</h1>
         <form method="POST" action={`/places/${id}?_method=PUT`}>
 
-        <div className="col-12 mb-3 form-group">
+          <div className="col-12 col-lg-9 mb-3 form-group">
             <label
               className="form-label"
               htmlFor="new-place-name"
@@ -25,6 +25,23 @@ function Edit (
               id="new-place-name"
               name="name"
               defaultValue={name}
+              required
+            />
+          </div>
+
+          <div className="col-12 col-lg-3 mb-3 form-group">
+            <label
+              className="form-label"
+              htmlFor="new-place-founded"
+            >
+              Founded
+            </label>
+            <input
+              className="form-control"
+              type="date"
+              id="new-place-founded"
+              name="founded"
+              defaultValue={founded}
               required
             />
           </div>
@@ -46,7 +63,7 @@ function Edit (
             />
           </div>
 
-          <div className="col-12 mb-3 form-group">
+          <div className="col-12 col-lg-6 mb-3 form-group">
             <label
               className="form-label"
               htmlFor="new-place-city"
@@ -63,7 +80,7 @@ function Edit (
             />
           </div>
 
-          <div className="col-12 mb-3 form-group">
+          <div className="col-12 col-lg-6 mb-3 form-group">
             <label
               className="form-label"
               htmlFor="new-place-state"

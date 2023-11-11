@@ -140,13 +140,16 @@ router.put('/:id', async (req, res) => {
 
 // DELETE /places/:id
 router.delete('/:id', async (req, res) => {
-  // const id = req.params.id
+  const id = req.params.id
   // if (!places[id]) {
   //   res.render('notfound')
   // } else {
   //   places.splice(id, 1)
   //   res.redirect('/places')
   // }
+  const place = await Place.findById(id)
+  await place.deleteOne()
+  res.redirect('/places')
 })
 
 

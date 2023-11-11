@@ -2,16 +2,24 @@ const React = require('react')
 const Def = require('../default')
 const states = require('../../models/states.json')
 
-function New ({error}) {
+function Form (
+  { id, name, state, city, cuisines, pic, founded, error, isNew = false }
+) {
+
+  // const [date, discard] = founded.toISOString().split('T')
 
   return (
     <Def>
       <main>
-        <h1>Add a Place</h1>
+        <h1>{isNew ? 'Add New Place' : 'Edit Place Details'}</h1>
         {error ? (
           <div className="alert alert-danger">{error}</div>
         ) : null}
-        <form className="row" method="POST" action="/places">
+        <form
+          className="row"
+          method="POST"
+          action={isNew ? '/places' : `/places/${id}?_method=PUT`}
+        >
 
           <div className="col-12 col-lg-9 mb-3 form-group">
             <label
@@ -25,6 +33,7 @@ function New ({error}) {
               type="text"
               id="new-place-name"
               name="name"
+              defaultValue={name}
               required
             />
           </div>
@@ -41,6 +50,7 @@ function New ({error}) {
               type="number"
               id="new-place-founded"
               name="founded"
+              defaultValue={founded}
               required
             />
           </div>
@@ -57,6 +67,7 @@ function New ({error}) {
               type="url"
               id="new-place-pic"
               name="pic"
+              defaultValue={pic}
             />
           </div>
 
@@ -72,6 +83,7 @@ function New ({error}) {
               type="text"
               id="new-place-city"
               name="city"
+              defaultValue={city}
               required
             />
           </div>
@@ -87,7 +99,7 @@ function New ({error}) {
               className="form-select"
               id="new-place-state"
               name="state"
-              defaultValue=""
+              defaultValue={state}
               required
             >
               <option value="" disabled></option>
@@ -109,13 +121,16 @@ function New ({error}) {
               type="text"
               id="new-place-cuisines"
               name="cuisines"
+              defaultValue={cuisines}
               required
             />
           </div>
 
           <div className="col-12">
 
-            <button className="btn btn-secondary">Add Place!</button>
+            <button className="btn btn-secondary">
+              {isNew ? 'Add Place' : 'Save'}
+            </button>
           </div>
 
         </form>
@@ -124,4 +139,4 @@ function New ({error}) {
   )
 }
 
-module.exports = New
+module.exports = Form

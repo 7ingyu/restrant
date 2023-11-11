@@ -23,8 +23,10 @@ const placeSchema = new mongoose.Schema({
     enum: states.map(({abbreviation}) => abbreviation)
   },
   founded: {
-    type: Date,
-    required: true
+    type: Number,
+    required: true,
+    min: [1500, "Invalid date too old"],
+    max: [new Date().getFullYear(), "Invalide date in the future"]
   }
 })
 

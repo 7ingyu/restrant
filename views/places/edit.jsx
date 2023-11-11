@@ -3,14 +3,19 @@ const Def = require('../default')
 const states = require('../../models/states.json')
 
 function Edit (
-  { id, name, state, city, cuisines, pic, founded }
+  { id, name, state, city, cuisines, pic, founded, error }
 ) {
+
+  // const [date, discard] = founded.toISOString().split('T')
 
   return (
     <Def>
       <main>
         <h1>Edit</h1>
-        <form method="POST" action={`/places/${id}?_method=PUT`}>
+        {error ? (
+          <div className="alert-danger">{error}</div>
+        ) : null}
+        <form className="row" method="POST" action={`/places/${id}?_method=PUT`}>
 
           <div className="col-12 col-lg-9 mb-3 form-group">
             <label
@@ -38,7 +43,7 @@ function Edit (
             </label>
             <input
               className="form-control"
-              type="date"
+              type="number"
               id="new-place-founded"
               name="founded"
               defaultValue={founded}
@@ -59,7 +64,6 @@ function Edit (
               id="new-place-pic"
               name="pic"
               defaultValue={pic}
-              required
             />
           </div>
 

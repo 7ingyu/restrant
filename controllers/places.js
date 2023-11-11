@@ -17,24 +17,41 @@ router.post('/', async (req, res) => {
     await Place.create(req.body)
     res.redirect('/places')
   } catch (e) {
-    console.log(e)
-    res.render('error', { error: e.message })
+    let msg = e.message
+    if (e.errors) {
+      msg = e.name + ': '
+      msg += Object.entries(e.errors)
+        .map(([field , {value, message}]) => message)
+        .join('. ')
+    }
+    res.render('places/form', { ...req.body, error: msg, isNew: true })
   }
 })
 
 // GET /places/new
 router.get('/new', (req, res) => {
-  res.render('places/new')
+  res.render('places/form', { isNew: true })
 })
 
 // GET /places/:id/edit
 router.get('/:id/edit', async (req, res) => {
-  // const id = req.params.id
+  const id = req.params.id
   // if (!places[id]) {
   //   res.render('notfound')
   // } else {
   //   res.render('places/edit', { ...places[id], id })
   // }
+  try {
+    const place = await Place.findById(id)
+    if (place.id) {
+      res.render('places/form', place)
+    } else {
+      throw 'Invalid ID'
+    }
+  } catch (e) {
+    console.log(e)
+    res.render('places/index', { error: e.message })
+  }
 })
 
 // GET /places/:id
@@ -54,18 +71,42 @@ router.get('/:id', async (req, res) => {
     }
   } catch (e) {
     console.log(e)
-    res.render('error', { error: e.message })
+    let msg = e.message
+    res.render('error', { error: msg })
   }
 })
 
 router.put('/:id', async (req, res) => {
-  // const id = req.params.id
+  const id = req.params.id
   // if (!places[id]) {
   //   res.render('notfound')
   // } else {
   //   places[id] = req.body
   //   res.redirect(`/places/${id}`)
   // }
+  try {
+    const place = await Place.findById(id)
+    const data = {...req.body}
+    Object.entries(data).forEach(([key, val]) => {
+      if (!val) delete data[key]
+    })
+    if (place.id) {
+      await place.updateOne(data)
+      res.redirect(`/places/${id}`)
+    } else {
+      throw 'Invalid ID'
+    }
+  } catch (e) {
+    console.log(e)
+    let msg = e.message
+    if (e.errors) {
+      msg = e.name + ': '
+      msg += Object.entries(e.errors)
+        .map(([field , {value, message}]) => message)
+        .join('. ')
+    }
+    res.render('places/form', { ...req.body, error: msg })
+  }
 })
 
 // DELETE /places/:id

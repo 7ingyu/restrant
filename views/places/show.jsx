@@ -2,7 +2,7 @@ const React = require('react')
 const Def = require('../default')
 
 function Show (
-  { id, name, state, city, cuisines, pic, founded }
+  { id, name, state, city, cuisines, pic, founded, comments }
 ) {
 
   return (
@@ -26,10 +26,20 @@ function Show (
             </div>
           </div>
         </div>
-        <div className="row">
+        <div className="row mt-4">
           <div className="col-12">
             <h2>Comments</h2>
-            <p>No comments yet!</p>
+            {comments.length ? (
+              comments.map(({id, author, rant, stars, content}) => (
+                <div key={id} className="card">
+                  <div className="card-body">
+                    <div>{stars}</div>
+                    <div>{rant ? '😡' : '😻'} {content}</div>
+                    <div>- {author}</div>
+                  </div>
+                </div>
+              ))
+            ) : <p>No comments yet!</p>}
           </div>
         </div>
       </main>

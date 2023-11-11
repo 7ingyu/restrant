@@ -64,6 +64,7 @@ router.get('/:id', async (req, res) => {
   // }
   try {
     const place = await Place.findById(id)
+    await place.populate('comments')
     if (place.id) {
       res.render('places/show', place)
     } else {

@@ -1,6 +1,6 @@
 const router = require('express').Router()
 // const places = require('../models/places')
-const { Place } = require('../models')
+const { Place, Comment } = require('../models')
 
 // GET /places
 router.get('/', async (req, res) => {
@@ -51,6 +51,34 @@ router.get('/:id/edit', async (req, res) => {
   } catch (e) {
     console.log(e)
     res.render('places/index', { error: e.message })
+  }
+})
+
+router.post('/:id/comments', async (req, res) => {
+  const id = req.params.id
+  const data = {...req.body}
+  Object.entries(data).forEach(([key, val]) => {
+    if (!val) delete data[key]
+  })
+  data.rant = data.rant === 'on'
+  try {
+    const [place, comment] = await Promise.all([
+      Place.findById(id),
+      Comment.create(data)
+    ])
+    place.comments.push(comment.id)
+    await place.save();
+    res.redirect(`/places/${id}`)
+  } catch (e) {
+    console.log(e)
+    let msg = e.message
+    if (e.errors) {
+      msg = e.name + ': '
+      msg += Object.entries(e.errors)
+        .map(([field , {value, message}]) => message)
+        .join('. ')
+    }
+    res.render('error', { error: msg })
   }
 })
 

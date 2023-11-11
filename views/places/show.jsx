@@ -1,9 +1,29 @@
 const React = require('react')
 const Def = require('../default')
 
+function Stars ({ rating }) {
+
+  return (
+    <div className="fs-2 d-flex">
+      <div className="position-relative ">
+        <div className="">{[1, 2, 3, 4, 5].map((n) => <i key={n} className="bi bi-star" />)}</div>
+        <div className="position-absolute top-0 left-0" style={{
+          width: `${rating / 5 * 100}%`,
+          height: '100%',
+          overflow: 'hidden'
+        }}>
+          {[1, 2, 3, 4, 5].map((n) => <i key={n} className="bi bi-star-fill" />)}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function Show (
   { id, name, state, city, cuisines, pic, founded, comments }
 ) {
+
+  const rating = comments.reduce((a, {stars}) => a + stars, 0) / comments.length
 
   return (
     <Def>
@@ -15,7 +35,7 @@ function Show (
           <div className="col-12 col-lg-6">
             <h1>{name}</h1>
             <h2>Rating</h2>
-            <p>Not Rated</p>
+            <p>{comments.length ? <Stars rating={rating} /> : 'Not Rated'}</p>
             <h2>Description</h2>
             <p>Located in {city}, {state} serving {cuisines} since {founded}.</p>
             <div className="d-flex gap-2">
@@ -33,7 +53,7 @@ function Show (
               comments.map(({id, author, rant, stars, content}) => (
                 <div key={id} className="card">
                   <div className="card-body">
-                    <div>{stars}</div>
+                    <div><Stars rating={stars} /></div>
                     <div>{rant ? '😡' : '😻'} {content}</div>
                     <div>- {author}</div>
                   </div>

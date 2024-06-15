@@ -13,19 +13,15 @@ const PORT = process.env.PORT
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
-app.use(express.static('public'))
+app.use(express.static('dist'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 // ROUTES & CONTROLLERS
-app.get('/', (req, res) => {
-  res.render('home')
-})
-
-app.use('/places', placesController)
+app.use('/api/places', placesController)
 
 app.get('*', (req, res) => {
-  res.status(404).render('notfound')
+  res.sendFile('dist/index.html', { root: __dirname })
 })
 
 // START SERVER

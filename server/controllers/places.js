@@ -5,11 +5,13 @@ const { Place, Comment } = require('../models')
 // GET /places
 router.get('/', async (req, res) => {
   const places = await Place.find()
-  res.render('places/index', { places })
+  res.json(places)
+  // res.render('places/index', { places })
 })
 
 // POST /places
 router.post('/', async (req, res) => {
+  console.log('req.body', req.body)
   try {
     Object.entries(req.body).forEach(([key, val]) => {
       if (!val) delete req.body[key]
@@ -106,6 +108,7 @@ router.get('/:id', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
+  // console.log('put', req.body)
   const id = req.params.id
   // if (!places[id]) {
   //   res.render('notfound')

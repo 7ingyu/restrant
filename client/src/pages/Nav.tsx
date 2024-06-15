@@ -1,6 +1,6 @@
-const React = require('react')
+// const React = require('react')
 
-function Nav () {
+const Nav = () => {
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary mb-3">
@@ -24,4 +24,5 @@ function Nav () {
   )
 }
 
-module.exports = Nav
+// module.exports = Nav
+export default Nav

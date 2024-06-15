@@ -2,16 +2,19 @@ const React = require('react')
 const Def = require('../default')
 
 function Stars ({ rating }) {
+  const width = rating / 5 * 100
+
+  const starStyles = {
+    width: `${width}%`,
+    height: '100%',
+    overflow: 'hidden'
+  }
 
   return (
     <div className="fs-2 d-flex">
       <div className="position-relative ">
         <div className="">{[1, 2, 3, 4, 5].map((n) => <i key={n} className="bi bi-star" />)}</div>
-        <div className="position-absolute top-0 left-0" style={{
-          width: `${rating / 5 * 100}%`,
-          height: '100%',
-          overflow: 'hidden'
-        }}>
+        <div className="position-absolute top-0 left-0 d-flex" style={starStyles}>
           {[1, 2, 3, 4, 5].map((n) => <i key={n} className="bi bi-star-fill" />)}
         </div>
       </div>

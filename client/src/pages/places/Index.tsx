@@ -1,7 +1,18 @@
-const React = require('react')
-const Def = require('../default')
+import { useEffect, useState } from 'react'
+function Index () {
+  const [places, setPlaces] = useState([])
 
-function Index ({ places = [] }) {
+  useEffect(() => {
+    const getPlaces = async () => {
+      const res = await fetch('/api/places')
+      const data = await res.json()
+      setPlaces(data)
+    }
+    getPlaces()
+    // fetch('/places')
+    //   .then(res => res.json())
+    //   .then(data => setPlaces(data))
+  }, [])
 
   const placesFormatted = places.map(({name, pic, cuisines, city, state, id}) => (
     <div className="col-12 col-lg-6 text-center" key={id}>
@@ -17,15 +28,14 @@ function Index ({ places = [] }) {
   ))
 
   return (
-    <Def>
-      <main>
+    <>
         <h1>Places</h1>
         <div className="row">
           {placesFormatted}
         </div>
-      </main>
-    </Def>
+        </>
   )
 }
 
-module.exports = Index
+// module.exports = Index
+export default Index

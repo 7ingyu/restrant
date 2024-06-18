@@ -10,8 +10,13 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3000/',
+        target: 'http://localhost:3001/',
       },
     }
   }
 })
+
+// /api/places
+// http://localhost:3001/api/places
+
+// localhost:5173

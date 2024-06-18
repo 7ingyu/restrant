@@ -26,3 +26,14 @@ app.get('*', (req, res) => {
 
 // START SERVER
 app.listen(PORT, () => console.log('listening at', PORT))
+
+
+
+
+
+
+// server proxy during development
+// /api all your api routes
+// make sure all your api calls from your front end are /api and not https://whatever
+// setup all non-api routes to go to your front end (aka the sendFile thing)
+// serve the dist folder static files
